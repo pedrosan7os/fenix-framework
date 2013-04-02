@@ -2,6 +2,7 @@ package pt.ist.fenixframework.dml;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +23,10 @@ public class DomainClass extends DomainEntity {
             interfacesNames = new ArrayList();
         }
         this.interfacesNames = interfacesNames;
+    }
+
+    public DomainClass(URL sourceFile, String fullName, DomainEntity superclass, String interfacesNames) {
+        this(sourceFile, fullName, superclass, Arrays.asList(interfacesNames.trim().split("\\s*,\\s*")));
     }
 
     public boolean hasSuperclass() {

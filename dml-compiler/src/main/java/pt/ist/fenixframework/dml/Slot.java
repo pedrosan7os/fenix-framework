@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.EnumSet;
 import java.util.Set;
 
+import org.json.simple.JSONObject;
+
 public class Slot implements Serializable {
 
     public enum Option {
@@ -13,10 +15,12 @@ public class Slot implements Serializable {
     private String name;
     private ValueType type;
     private Set<Option> slotOptions = EnumSet.noneOf(Option.class);
+    private JSONObject metadata;
 
-    public Slot(String name, ValueType type) {
+    public Slot(String name, ValueType type, JSONObject metadata) {
         this.name = name;
         this.type = type;
+        this.metadata = metadata;
     }
 
     public String getName() {
@@ -46,6 +50,10 @@ public class Slot implements Serializable {
 
     public boolean hasOption(Option option) {
         return slotOptions.contains(option);
+    }
+
+    public JSONObject getMetadata() {
+        return metadata;
     }
 
 //     public void generateSlotDeclaration(CodeWriter out) {
